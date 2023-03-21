@@ -33,6 +33,11 @@ Route::middleware('auth','user-access:admin')->group(function () {
     Route::get('/editaddproduct/{id}', [HomeController::class, 'editaddproduct'])->name('editaddproduct');
     Route::post('/updateaddproduct/{id}', [HomeController::class, 'updateaddproduct'])->name('updateaddproduct');
     Route::get('/links', [HomeController::class, 'links'])->name('links');
+    Route::get('/addlinks', [HomeController::class, 'addlinks'])->name('addlinks');
+    Route::get('/editlinks/{id}', [HomeController::class, 'editlinks'])->name('editlinks');
+    Route::post('/savelinks', [HomeController::class, 'savelinks'])->name('savelinks');
+    Route::post('/updatelinks/{id}', [HomeController::class, 'updatelinks'])->name('updatelinks');
+    Route::get('/deletelink/{id}', [HomeController::class, 'delete'])->name('deletelink');
 
     
 });

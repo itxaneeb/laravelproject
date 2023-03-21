@@ -11,6 +11,7 @@ use App\Models\levellist;
 use App\Models\Package;
 use App\Models\packageslist;
 use App\Models\WithdrawRequest;
+use App\Models\YouTubeLinks;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Crypt;
 
@@ -28,7 +29,9 @@ class HomeController extends Controller
 
    public function link()
    {
-    return view('links');
+
+    $user = YouTubeLinks::where('level_id',auth()->user()->level_id)->where('pacakge_id',auth()->user()->package_id)->get();
+    return view('links',['user'=>$user]);
    }
 
    public function packages()
@@ -403,6 +406,57 @@ public function addlevel()
 
     public function links()
     {
-        return view('adminlinkpage');
+        $users = YouTubeLinks::all();
+        return view('adminlinkpage',['users'=>$users]);
+    }
+
+    public function addlinks()
+    {
+        $packages = Package::all();
+        $levels = levellist::all();
+        return view('addlinks',['packages'=>$packages , 'levels'=>$levels]);
+    }
+
+    public function savelinks(Request $request)
+    {
+
+        // dd($request);
+        $link = new YouTubeLinks();
+        $link->url = $request->url;
+        $link->reward = $request->reward;
+        $link->pacakge_id = $request->packageid;
+        $link->level_id = $request->levelid;
+
+        $link->save();
+        return redirect()->route('links')->with('success','You data is added to display');
+    }
+
+    public function editlinks($id)
+    {
+        $packages = Package::all();
+        $levels = levellist::all();
+        $user = YouTubeLinks::find($id);
+        return view('editlinks',['user'=>$user , 'packages'=>$packages , 'levels'=>$levels]);
+    }
+
+    public function updatelinks(Request $request,$id)
+    {
+        // dd($id);
+        $link = YouTubeLinks::find($id);
+        $link->url = $request->url;
+        $link->reward = $request->reward;
+        $link->pacakge_id = $request->package_id;
+        $link->level_id = $request->level_id;
+
+        $link->save();
+
+        return redirect()->route('links')->with('success','You data is Updated');
+    }
+
+    public function delete($id)
+    {
+        $link = YouTubeLinks::find($id);
+        $link->delete();
+        return redirect()->back();
     }
 }

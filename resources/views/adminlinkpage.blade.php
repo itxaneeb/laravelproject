@@ -8,10 +8,10 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <h5 class="card-header">Show Products</h5>
+            <h5 class="card-header">Links </h5>
             
                 <div>
-                    <a href="{{ route('addmoreproducts') }}" class="btn btn-primary">Add products</a>
+                    <a href="{{ route('addlinks') }}" class="btn btn-primary">Add Links</a>
                 </div>
                 
                 
@@ -27,26 +27,20 @@
                 </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-               {{-- @foreach ($users as $user)
-               @dd($user);
+               @foreach ($users as $user)
+               {{-- @dd($user); --}}
                 <tr>
-                    <td>
-                        @if ($user->image)
-                            <img src="{{ asset( $user->image) }}" alt="{{ $user->name }}" style="width: 100px; height: auto; object-fit: cover;"/>
-                        @else
-                        <img src="{{ ('assets/images/noimage.jpg') }}" alt="Default Image" style="width: 100px; height: auto; object-fit: cover;" />
-                        @endif
-                    </td>
-                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $user->price }}</strong></td>
+                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $user->url }}</strong></td>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $user->reward }}</strong></td>
-                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $user->packageid}}</strong></td>
-                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $user->levelid}}</strong></td>
+                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $user->level_id}}</strong></td>
+                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $user->pacakge_id}}</strong></td>
+                    
                     <td>
-                        <a href="{{ route('editaddproduct',$user->id) }}" class="btn btn-danger"> Edit</a>
-                        <a href="{{ route('deleteaddproduct',$user->id) }}" class="btn btn-danger"> Delete</a>
+                        <a href="{{ route('editlinks',$user->id) }}" class="btn btn-danger"> Edit</a>
+                        <a href="{{ route('deletelink',$user->id) }}" class="btn btn-danger"> Delete</a>
                     </td>
                 </tr>
-               @endforeach --}}
+               @endforeach
                 </tbody>
             </table>
             </div>

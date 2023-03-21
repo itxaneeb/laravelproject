@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('you_tube_links', function (Blueprint $table) {
             $table->id();
+            $table->string('url');
+            $table->double('reward');
+            $table->unsignedBigInteger('level_id');
+            $table->unsignedBigInteger('pacakge_id');
             $table->timestamps();
         });
     }

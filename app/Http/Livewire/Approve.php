@@ -36,7 +36,7 @@ class Approve extends Component
         $record = levellist::find($invite->level_id);
         $package = Package::find($user->package_id);
         $inviteId = $user->invite_id;
-        // $firstuser = User::where('invite_id', $inviteId)->first();
+      
         $total_team = User::where('invite_id',$inviteId)->where('status','approved')->count();
         
         if($total_team > $record->totalmember){
